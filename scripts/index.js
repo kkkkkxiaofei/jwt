@@ -1,19 +1,22 @@
 const fs = require('fs');
 const path = require('path');
-const { decode, sign, verify, rawVerify } = require('../utils');
+const { decode, sign, verify, rawVerify: verifySignature, rawDecode } = require('../utils');
 const { ID_TOKEN } = require('../config');
 
-
+// 1. decode
 const decodedIdToken = decode(ID_TOKEN, { complete: true });
+console.log(decodedIdToken);
+
+// 2. raw decode
+console.log(rawDecode(ID_TOKEN));
+
+// 3. verify all
+const pem = fs.readFileSync(path.resolve('./public.pem'));
+console.log(verify(ID_TOKEN, pem));
+
+// 4. verify signature in raw way
+console.log(verifySignature(ID_TOKEN, pem));
+
+// 5.
 // const idToken = sign(decodedIdToken.payload);
 
-// console.log(decodedIdToken);
-// console.log(ID_TOKEN === idToken);
-// console.log(decode(idToken, { complete: true }));
-
-const pem = fs.readFileSync(path.resolve('./public.pem'));
-// console.log(Buffer.from(pem, 'base64').toString());
-// console.log(verify(ID_TOKEN, pem));
-
-
-console.log(rawVerify(ID_TOKEN, pem));
