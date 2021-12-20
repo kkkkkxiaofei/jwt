@@ -17,6 +17,9 @@ console.log(verify(ID_TOKEN, pem));
 // 4. verify signature in raw way
 console.log(verifySignature(ID_TOKEN, pem));
 
-// 5.
-// const idToken = sign(decodedIdToken.payload);
+// 5. sign with secret
+const token = sign({ name: 'xf'}, 'secret', {algorithm: 'HS256'});
+console.log(token, rawDecode(token));
+
+// 6. todo: sign with private key
 

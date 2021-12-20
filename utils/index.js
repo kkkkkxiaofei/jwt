@@ -14,8 +14,8 @@ const rawDecode = jws => {
   }
 };
 
-const sign = (payload, serectOrPrivateKey = SECRET) => 
-  jwt.sign(payload, serectOrPrivateKey, {algorithm: 'RS256'});
+const sign = (payload, serectOrPrivateKey = SECRET, options = {algorithm: 'RS256'}) => 
+  jwt.sign(payload, serectOrPrivateKey, options);
 
 const verify = (token, secretOrPublickKey) => new Promise((resolve, reject) => {
   jwt.verify(token, secretOrPublickKey, {
