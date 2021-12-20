@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { decode, sign, verify, rawVerify: verifySignature, rawDecode } = require('../utils');
-const { ID_TOKEN } = require('../config');
+const { ID_TOKEN, BEARER } = require('../config');
 
 // 1. decode
 const decodedIdToken = decode(ID_TOKEN, { complete: true });
@@ -21,5 +21,9 @@ console.log(verifySignature(ID_TOKEN, pem));
 const token = sign({ name: 'xf'}, 'secret', {algorithm: 'HS256'});
 console.log(token, rawDecode(token));
 
-// 6. todo: sign with private key
+// 6. decode bearer token
+
+console.log(decode(BEARER));
+
+// 7. todo: sign with private key
 
