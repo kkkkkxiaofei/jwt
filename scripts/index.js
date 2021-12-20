@@ -1,4 +1,8 @@
-const { decode } = require('../utils');
+const { decode, sign } = require('../utils');
 const { ID_TOKEN } = require('../config');
 
-console.log(decode(ID_TOKEN));
+const payload = decode(ID_TOKEN);
+const idToken = sign(payload);
+
+console.log(payload);
+console.log(payload === idToken);
